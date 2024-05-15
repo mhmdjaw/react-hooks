@@ -4,6 +4,7 @@
 module.exports = {
   extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
   parser: '@typescript-eslint/parser',
+  ignorePatterns: ['dist', '.eslintrc.cjs'],
   plugins: ['prettier'],
   globals: {
     process: true
