@@ -1,7 +1,11 @@
 {
-  "name": "react-hooks",
+  "name": "@mhmdjawhar/react-hooks",
   "version": "0.1.0",
   "description": "A collection of hooks for better state management",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mhmdjaw/react-hooks.git"
+  },
   "exports": {
     ".": {
       "import": {
