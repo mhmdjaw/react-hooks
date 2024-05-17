@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
 
 /**
- * used to manage boolean state and controlled components
+ * Used to manage boolean state and controlled components.
  * @param {boolean} initialState initial opened state
  * @returns stateful boolean value and functions to update it
  */

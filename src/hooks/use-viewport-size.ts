@@ -5,6 +5,10 @@ const eventListenerOptions = {
   passive: true
 }
 
+/**
+ * Returns current viewport's width and height. It updates on resize and when the orientation changes.
+ * @returns width and height
+ */
 export const useViewportSize = () => {
   const [windowSize, setWindowSize] = useState({
     width: 0,
