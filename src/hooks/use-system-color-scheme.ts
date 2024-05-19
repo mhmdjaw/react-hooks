@@ -4,7 +4,7 @@ const query = '(prefers-color-scheme: dark)'
 
 /**
  * Returns current system color scheme. Updates on change.
- * @returns "dark" or "light"
+ * @returns "dark" or "light".
  */
 export const useSystemColorScheme = () => {
   const [colorScheme, setColorScheme] = useState('light')
@@ -16,7 +16,7 @@ export const useSystemColorScheme = () => {
 
     window.matchMedia(query).addEventListener('change', listener)
     return () => window.matchMedia(query).removeEventListener('change', listener)
-  })
+  }, [])
 
   return colorScheme
 }

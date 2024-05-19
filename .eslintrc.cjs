@@ -2,7 +2,13 @@
  * @type {import("@types/eslint").Linter.BaseConfig}
  */
 module.exports = {
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier'
+  ],
   parser: '@typescript-eslint/parser',
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   plugins: ['prettier'],

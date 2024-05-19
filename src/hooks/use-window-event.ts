@@ -3,9 +3,9 @@ import { useEffect } from 'react'
 /**
  * Adds an event listener to window object when the component
  * mounts and removes it when it unmounts.
- * @param type type of event
- * @param listener event handler
- * @param options event options
+ * @param type Type of event.
+ * @param listener Event listener.
+ * @param options Event options.
  */
 export function useWindowEvent<T extends keyof WindowEventMap>(
   type: T,
@@ -15,5 +15,5 @@ export function useWindowEvent<T extends keyof WindowEventMap>(
   useEffect(() => {
     window.addEventListener(type, listener, options)
     return () => window.removeEventListener(type, listener, options)
-  }, [type, listener])
+  }, [type, listener, options])
 }
