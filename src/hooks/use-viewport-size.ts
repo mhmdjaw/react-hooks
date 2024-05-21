@@ -6,9 +6,9 @@ const eventListenerOptions = {
 }
 
 /**
- * Returns current viewport's width and height. It updates on resize and when the orientation changes.
- * @param {boolean} isSubscribed (Optional) Activate or cancel subscription. Set to false to stop getting updates.
- * @returns width and height
+ * Returns current viewport's "`width`" and "`height`". It updates on `resize` and `orientationchange`.
+ * @param {boolean} isSubscribed (Optional) Activate or cancel subscription. Set to `false` to stop getting updates.
+ * @returns "`width`" and "`height`"
  */
 export const useViewportSize = (isSubscribed: boolean = true) => {
   const [windowSize, setWindowSize] = useState({

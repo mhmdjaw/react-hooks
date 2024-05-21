@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react'
 const query = '(prefers-color-scheme: dark)'
 
 /**
- * Returns current system color scheme. Updates on change.
- * @returns "dark" or "light".
+ * Returns current `system` color scheme. Updates on change.
+ * @returns "`dark`" or "`light`".
  */
 export const useSystemColorScheme = () => {
   const [colorScheme, setColorScheme] = useState('light')

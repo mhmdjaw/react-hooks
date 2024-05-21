@@ -5,7 +5,7 @@ import { useCallback, useState } from 'react'
  *
  * Note that it does not reset the state of the current component.
  *
- * @returns Reset value given to the component key and a reset function to trigger the reset.
+ * @returns Reset value that must be passed to the component `key` and a reset function to trigger the reset.
  */
 export const useResetChild = () => {
   const [timestamp, setTimestamp] = useState(Date.now())

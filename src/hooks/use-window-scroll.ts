@@ -29,9 +29,9 @@ const scrollTo = ({ x, y }: Partial<ScrollPosition>) => {
 }
 
 /**
- * Returns current window scroll position and a function to scroll to a given position.
- * @param {boolean} isSubscribed (Optional) Activate or cancel subscription. Set to false to stop getting updates.
- * @returns Current window scroll position and a function to scroll smoothly to a given position.
+ * Returns current `window` scroll position and a function to scroll to a given position.
+ * @param {boolean} isSubscribed (Optional) Activate or cancel subscription. Set to `false` to stop getting updates.
+ * @returns Current `window` scroll position and a function to scroll smoothly to a given position.
  */
 export function useWindowScroll(isSubscribed: boolean = true) {
   const [windowPosition, setWindowPosition] = useState<ScrollPosition>({ x: 0, y: 0 })

@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react'
 
 /**
- * Detects click or another specified event outside of given element or list of elements.
+ * Detects `click` or another specified event outside of a given element or list of elements.
  * @param handler Function called when outside click is detected.
- * @param refs Optional list of ref objects for elements that should not trigger outside click.
- * @param event Optional event to replace the default "click" event.
- * @returns Ref Object that must be passed to the element to detect clicks outside of it.
+ * @param refs Optional list of `ref` objects for elements that should not trigger outside click.
+ * @param event Optional event to replace the default `click` event.
+ * @returns `ref` Object that must be passed to the element to detect clicks outside of it.
  */
 export const useClickOutside = <T extends HTMLElement>(
   handler: () => void,

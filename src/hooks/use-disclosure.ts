@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react'
 
 /**
- * Used to manage boolean state and controlled components.
- * @param {boolean} initialState Initial opened state.
- * @returns Stateful boolean value and functions to update it.
+ * Used to manage `boolean` state and controlled components.
+ * @param {boolean} initialState Initial `opened` state.
+ * @returns Stateful `boolean` value and functions to update it.
  */
 export const useDisclosure = (initialState: boolean = false) => {
   const [opened, setOpened] = useState(initialState)
