@@ -44,7 +44,7 @@ npm i @mhmdjawhar/react-hooks
 
 Used to manage `boolean` state and controlled components.
 
-#### Examples
+**Examples**
 
 ```tsx
 import { useDisclosure } from '@mhmdjawhar/react-hooks'
@@ -64,8 +64,6 @@ export const Demo = () => {
 ```
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-disclosure-example?file=src%2FDemo.tsx)
-
-#### API Reference
 
 **Parameters:**
 
