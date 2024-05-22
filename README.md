@@ -12,11 +12,11 @@ Advantages of using this library:
 
 ## 📕 Table of Content
 
-- [Installation](#⬇️-installation)
-- [Hooks](#🪝-hooks)
-- [Usage](#🔎-usage)
-- [Contributions](#🤝-contributions)
-- [License](#⚖️-license)
+- [Installation](#%EF%B8%8F-installation)
+- [Hooks](#-hooks)
+- [Usage](#-usage)
+- [Contributions](#-contributions)
+- [License](#%EF%B8%8F-license)
 
 ## ⬇️ Installation
 
