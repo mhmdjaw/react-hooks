@@ -4,8 +4,8 @@ import { useCallback, useEffect, useRef } from 'react'
  * Manages `interval` and handles starting and clearing it.
  * @param callback Function that will be called every delay.
  * @param {number} delay `interval` delay (`ms`) in between `callback` executions.
- * @param {boolean} autoInvoke Determines whether the `interval` should start when the component mounts. `false` by default.
- * @param {React.DependencyList} depsList Optional list of dependencies used in the `callback` function. Pass state values that the `callback` function might depend on.
+ * @param {boolean} autoInvoke (Optional) Determines whether the `interval` should start when the component mounts. `false` by default.
+ * @param {React.DependencyList} depsList (Optional) List of dependencies used in the `callback` function. Pass state values that the `callback` function might depend on.
  * @returns start and clear functions and function to check the status of the `interval`.
  */
 export const useInterval = (

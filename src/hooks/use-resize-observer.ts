@@ -5,8 +5,8 @@ type ObserverHandler = (contectRect: Omit<DOMRectReadOnly, 'toJSON'>) => void
 /**
  * Detects changes to the dimensions of an `Element` with `ResizeObserver`.
  * @param {ObserverHandler} handler Function called when the size of the element observed changes. `contentRect` values are passed as an object parameter.
- * @param {React.DependencyList} depsList Optional list of dependencies used in the `handler`. Pass state values that the `handler` might depend on.
- * @param {ResizeObserverOptions} options `ResizeObserver` options.
+ * @param {React.DependencyList} depsList (Optional) List of dependencies used in the `handler`. Pass state values that the `handler` might depend on.
+ * @param {ResizeObserverOptions} options (Optional) `ResizeObserver` options.
  * @returns `RefObject` that must be passed to the element whose size is being observed.
  */
 export const useResizeObserver = <T extends HTMLElement>(

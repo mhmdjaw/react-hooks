@@ -28,7 +28,7 @@ npm i @mhmdjawhar/react-hooks
 
 - [useDisclosure](#usedisclosure)
 - [useClickOutside](#useclickoutside)
-- useViewportSize
+- [useViewportSize](#useViewportSize)
 - useResizeObserver
 - useWindowScroll
 - useSystemColorScheme
@@ -187,7 +187,68 @@ export const OutsideEventExample: React.FC = () => {
 | ---- | ----------- | ------------------------------------------------------------- |
 | ref  | `RefObject` | Must be passed to the element to detect clicks outside of it. |
 
-## 🤝 Contributions
+### useViewportSize
+
+Returns current viewport's `width` and `height`. It updates on `resize` and `orientationchange`.
+
+**Examples**
+
+```tsx
+import { useViewportSize } from '@mhmdjawhar/react-hooks'
+
+export const ViewportSizeExample: React.FC = () => {
+  const { width, height } = useViewportSize()
+
+  return (
+    <p>
+      width: {width}, height: {height}
+    </p>
+  )
+}
+```
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-viewport-size-example-tpcyt7?file=src%2FDemo.tsx)
+
+You can also pass an optional `boolean` parameter to either activate or cancel subscription. Set to `false` to stop getting updates.
+
+```tsx
+import { useViewportSize } from '@mhmdjawhar/react-hooks'
+import { useState } from 'react'
+
+export const ViewportSizeSubscriptionExample: React.FC = () => {
+  const [subscription, setSubscription] = useState(true)
+
+  const { width, height } = useViewportSize(subscription)
+
+  return (
+    <>
+      <p>
+        width: {width}, height: {height}
+      </p>
+      <button onClick={() => setSubscription((sub) => !sub)}>toggle subscription</button>
+    </>
+  )
+}
+```
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-viewport-size-example-2?file=src%2FDemo.tsx)
+
+**Parameters**
+
+| Name         | Type      | Description                                                                         |
+| ------------ | --------- | ----------------------------------------------------------------------------------- |
+| isSubscribed | `boolean` | (Optional) Activate or cancel subscription. Set to `false` to stop getting updates. |
+
+**Return Value**
+
+Returns an object with the following properties:
+
+| Name   | Type     | Description          |
+| ------ | -------- | -------------------- |
+| width  | `number` | The viewport width.  |
+| height | `number` | The viewport height. |
+
+## 💎 Contributions
 
 Any Contributions are welcome!!😄
 

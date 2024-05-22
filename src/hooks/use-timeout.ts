@@ -4,8 +4,8 @@ import { useCallback, useEffect, useRef } from 'react'
  * Manages `timeout` and handles starting and clearing it.
  * @param callback Function that will be called after the timer elapses.
  * @param {number} delay `timeout` delay (`ms`) after which the `callback` function will be executed.
- * @param {boolean} autoInvoke Determines whether the `timeout` should start when the component mounts. `false` by default.
- * @param {React.DependencyList} depsList Optional list of dependencies used in the `callback` function. Pass state values that the `callback` function might depend on.
+ * @param {boolean} autoInvoke (Optional) Determines whether the `timeout` should start when the component mounts. `false` by default.
+ * @param {React.DependencyList} depsList (Optional) List of dependencies used in the `callback` function. Pass state values that the `callback` function might depend on.
  * @returns start and clear functions.
  */
 export const useTimeout = (
