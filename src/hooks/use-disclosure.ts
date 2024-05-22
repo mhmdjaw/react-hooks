@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react'
 
 /**
  * Used to manage `boolean` state and controlled components.
- * @param {boolean} initialState Initial `opened` state.
+ * @param {boolean} initialState Initial `opened` state. Defaults to `false`.
  * @returns Stateful `boolean` value and functions to update it.
  */
 export const useDisclosure = (initialState: boolean = false) => {
