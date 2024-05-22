@@ -31,7 +31,7 @@ npm i @mhmdjawhar/react-hooks
 - [useViewportSize](#useViewportSize)
 - [useResizeObserver](#useResizeObserver)
 - [useWindowScroll](#useWindowScroll)
-- useSystemColorScheme
+- [useSystemColorScheme](#useSystemColorScheme)
 - useWindowEvent
 - useResetChild
 - useTimeout
@@ -413,6 +413,30 @@ Returns an array with the following elements:
 | `[0].x` | `number` | Scroll position X.                                 |
 | `[0].y` | `number` | Scroll position Y.                                 |
 | `[1]`   | Function | A function to scroll smoothly to a given position. |
+
+## useSystemColorScheme
+
+Returns current `system` color scheme. Updates on change.
+
+**Examples**
+
+```tsx
+import { useSystemColorScheme } from '@mhmdjawhar/react-hooks'
+
+export const SystemColorSchemeExample: React.FC = () => {
+  const colorScheme = useSystemColorScheme()
+
+  return <p>{colorScheme}</p>
+}
+```
+
+**Return Value**
+
+| Name        | Type     | Description        |
+| ----------- | -------- | ------------------ |
+| colorScheme | `string` | `light` or `dark`. |
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-system-color-scheme-example?file=src%2FDemo.tsx)
 
 ## 💎 Contributions
 
