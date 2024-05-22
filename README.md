@@ -30,7 +30,7 @@ npm i @mhmdjawhar/react-hooks
 - [useClickOutside](#useclickoutside)
 - [useViewportSize](#useViewportSize)
 - [useResizeObserver](#useResizeObserver)
-- useWindowScroll
+- [useWindowScroll](#useWindowScroll)
 - useSystemColorScheme
 - useWindowEvent
 - useResetChild
@@ -349,6 +349,70 @@ export const ResizeObserverExample: React.FC = () => {
 | Name | Type        | Description                                                 |
 | ---- | ----------- | ----------------------------------------------------------- |
 | ref  | `RefObject` | Must be passed to the element whose size is being observed. |
+
+## useWindowScroll
+
+Returns current `window` scroll position and a function to scroll to a given position.
+
+**Examples**
+
+```tsx
+import { useWindowScroll } from '@mhmdjawhar/react-hooks'
+
+export const WindowScrollExample: React.FC = () => {
+  const [position, scrollTo] = useWindowScroll()
+
+  return (
+    <>
+      <p>
+        Scroll position - X: {position.x}, Y: {position.y}
+      </p>
+      <button onClick={() => scrollTo({ y: 0 })}>scroll to top</button>
+    </>
+  )
+}
+```
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-window-scroll-example?file=src%2FDemo.tsx)
+
+```tsx
+import { useWindowScroll } from '@mhmdjawhar/react-hooks'
+import { useState } from 'react'
+
+export const WindowScrollExample: React.FC = () => {
+  const [subscription, setSubscription] = useState(true)
+
+  const [position, scrollTo] = useWindowScroll(subscription)
+
+  return (
+    <>
+      <p>
+        Scroll position - width: {position.x}, height: {position.y}
+      </p>
+      <button onClick={() => scrollTo({ y: 0 })}>scroll to top</button>
+      <button onClick={() => setSubscription((prev) => !prev)}>toggle subscription</button>
+    </>
+  )
+}
+```
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-window-scroll-example-2?file=src%2FDemo.tsx)
+
+**Parameters**
+
+| Name         | Type      | Description                                                                         |
+| ------------ | --------- | ----------------------------------------------------------------------------------- |
+| isSubscribed | `boolean` | (Optional) Activate or cancel subscription. Set to `false` to stop getting updates. |
+
+**Return Value**
+
+Returns an array with the following elements:
+
+| Name    | Type     | Description                                        |
+| ------- | -------- | -------------------------------------------------- |
+| `[0].x` | `number` | Scroll position X.                                 |
+| `[0].y` | `number` | Scroll position Y.                                 |
+| `[1]`   | Function | A function to scroll smoothly to a given position. |
 
 ## 💎 Contributions
 
