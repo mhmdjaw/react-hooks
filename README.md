@@ -29,7 +29,7 @@ npm i @mhmdjawhar/react-hooks
 - [useDisclosure](#usedisclosure)
 - [useClickOutside](#useclickoutside)
 - [useViewportSize](#useViewportSize)
-- useResizeObserver
+- [useResizeObserver](#useResizeObserver)
 - useWindowScroll
 - useSystemColorScheme
 - useWindowEvent
@@ -207,7 +207,7 @@ export const ViewportSizeExample: React.FC = () => {
 }
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-viewport-size-example-tpcyt7?file=src%2FDemo.tsx)
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-viewport-size-example?file=src%2FDemo.tsx)
 
 You can also pass an optional `boolean` parameter to either activate or cancel subscription. Set to `false` to stop getting updates.
 
@@ -247,6 +247,108 @@ Returns an object with the following properties:
 | ------ | -------- | -------------------- |
 | width  | `number` | The viewport width.  |
 | height | `number` | The viewport height. |
+
+## useResizeObserver
+
+Detects changes to the dimensions of an `Element` with `ResizeObserver`.
+
+**Examples**
+
+```tsx
+import { useResizeObserver } from '@mhmdjawhar/react-hooks'
+import { useState } from 'react'
+
+export const ResizeObserverExample: React.FC = () => {
+  const [rect, setRect] = useState({
+    x: 0,
+    y: 0,
+    width: 0,
+    height: 0,
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0
+  })
+
+  const ref = useResizeObserver<HTMLTextAreaElement>((contentRect) => subscription && setRect(contentRect))
+
+  return (
+    <>
+      <textarea ref={ref} style={{ width: '400px', height: '400px', position: 'relative' }} />
+      <p>
+        width: {rect.width}, height: {rect.height}
+      </p>
+      <p>
+        x: {rect.x}, y: {rect.y}
+      </p>
+      <p>
+        top: {rect.top}, left: {rect.left}, bottom: {rect.bottom}, right: {rect.right}
+      </p>
+    </>
+  )
+}
+```
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-resize-observer-example?file=src%2FDemo.tsx)
+
+You can also pass a list of dependencies used in the `callback` function.
+
+```tsx
+import { useResizeObserver } from '@mhmdjawhar/react-hooks'
+import { useState } from 'react'
+
+export const ResizeObserverExample: React.FC = () => {
+  const [rect, setRect] = useState({
+    x: 0,
+    y: 0,
+    width: 0,
+    height: 0,
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0
+  })
+
+  const [subscription, setSubscription] = useState(true)
+
+  const ref = useResizeObserver<HTMLTextAreaElement>(
+    (contentRect) => subscription && setRect(contentRect),
+    [subscription]
+  )
+
+  return (
+    <>
+      <textarea ref={ref} style={{ width: '400px', height: '400px', position: 'relative' }} />
+      <p>
+        width: {rect.width}, height: {rect.height}
+      </p>
+      <p>
+        x: {rect.x}, y: {rect.y}
+      </p>
+      <p>
+        top: {rect.top}, left: {rect.left}, bottom: {rect.bottom}, right: {rect.right}
+      </p>
+      <button onClick={() => setSubscription((sub) => !sub)}>toggle subscription</button>
+    </>
+  )
+}
+```
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-resize-observer-example-2?file=src%2FDemo.tsx)
+
+**Parameters**
+
+| Name     | Type             | Description                                                                                                              |
+| -------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| handler  | Function         | A function called when the size of the element observed changes. `contentRect` values are passed as an object parameter. |
+| depsList | `DependencyList` | List of dependencies used in the `handler`. Pass state values that the `handler` might depend on.                        |
+| options  | `ResizeObserver` | `ResizeObserver` options.                                                                                                |
+
+**Return Value**
+
+| Name | Type        | Description                                                 |
+| ---- | ----------- | ----------------------------------------------------------- |
+| ref  | `RefObject` | Must be passed to the element whose size is being observed. |
 
 ## 💎 Contributions
 
