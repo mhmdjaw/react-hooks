@@ -32,7 +32,7 @@ npm i @mhmdjawhar/react-hooks
 - [useResizeObserver](#useResizeObserver)
 - [useWindowScroll](#useWindowScroll)
 - [useSystemColorScheme](#useSystemColorScheme)
-- useWindowEvent
+- [useWindowEvent](#useWindowEvent)
 - useResetChild
 - useTimeout
 - useInterval
@@ -341,8 +341,8 @@ export const ResizeObserverExample: React.FC = () => {
 | Name     | Type             | Description                                                                                                              |
 | -------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | handler  | Function         | A function called when the size of the element observed changes. `contentRect` values are passed as an object parameter. |
-| depsList | `DependencyList` | List of dependencies used in the `handler`. Pass state values that the `handler` might depend on.                        |
-| options  | `ResizeObserver` | `ResizeObserver` options.                                                                                                |
+| depsList | `DependencyList` | (Optional) List of dependencies used in the `handler`. Pass state values that the `handler` might depend on.             |
+| options  | `ResizeObserver` | (Optional) `ResizeObserver` options.                                                                                     |
 
 **Return Value**
 
@@ -437,6 +437,39 @@ export const SystemColorSchemeExample: React.FC = () => {
 | colorScheme | `string` | `light` or `dark`. |
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-system-color-scheme-example?file=src%2FDemo.tsx)
+
+## useWindowEvent
+
+Adds an `event` listener to `window` object when the component mounts and removes it when it unmounts.
+
+**Examples**
+
+```tsx
+import { useWindowEvent } from '@mhmdjawhar/react-hooks'
+import { useCallback, useState } from 'react'
+
+export const WindowEventExample: React.FC = () => {
+  const [key, setKey] = useState('nothing')
+
+  const windowListener = useCallback((event: KeyboardEvent) => {
+    setKey(event.key)
+  }, [])
+
+  useWindowEvent('keydown', windowListener)
+
+  return <p>{key} was pressed</p>
+}
+```
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-window-event-example?file=src%2FDemo.tsx)
+
+**Parameters**
+
+| Name     | Type                                 | Description                 |
+| -------- | ------------------------------------ | --------------------------- |
+| type     | `keyof WindowEventMap`               | Type of `event`.            |
+| listener | Function                             | `event` listener.           |
+| options  | `boolean \| AddEventListenerOptions` | (Optional) `event` options. |
 
 ## 💎 Contributions
 
