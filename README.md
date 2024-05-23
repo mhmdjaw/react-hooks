@@ -34,7 +34,7 @@ npm i @mhmdjawhar/react-hooks
 - [useSystemColorScheme](#useSystemColorScheme)
 - [useWindowEvent](#useWindowEvent)
 - [useResetChild](#useResetChild)
-- useTimeout
+- [useTimeout](#useTimeout)
 - useInterval
 - useAnimationFrame
 
@@ -481,7 +481,7 @@ Resets the state of a child component along with all its children. Note that it 
 import { useResetChild } from '@mhmdjawhar/react-hooks'
 import { useState } from 'react'
 
-export const Demo = () => {
+export const ResetChildExample = () => {
   const [resetKey, reset] = useResetChild()
 
   return (
@@ -516,6 +516,8 @@ const SubChildComponent = () => {
 }
 ```
 
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-reset-child-example?file=src%2FDemo.tsx)
+
 **Return Value**
 
 Returns an array with the following elements:
@@ -525,7 +527,49 @@ Returns an array with the following elements:
 | `[0]` | `string` | Reset value that must be passed to the component `key`. |
 | `[1]` | Function | A reset function to trigger the reset.                  |
 
-##
+## useTimeout
+
+Manages `timeout` and handles starting and clearing it.
+
+**Examples**
+
+```tsx
+import { useTimeout } from '@mhmdjawhar/react-hooks'
+import { useState } from 'react'
+
+export const TimeoutExample: React.FC = () => {
+  const [count, setCount] = useState(0)
+  const [start, clear] = useTimeout(() => setCount((c) => c + 1), 1000)
+
+  return (
+    <>
+      <button onClick={start}>Start Timeout</button>
+      <button onClick={clear}>Clear Timeout</button>
+      <p>count: {count}</p>
+    </>
+  )
+}
+```
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-timeout-example?file=src%2FDemo.tsx)
+
+**Parameters**
+
+| Name       | Type                   | Description                                                                                                                                        |
+| ---------- | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| callback   | Function               | A function that will be called after the timer elapses.                                                                                            |
+| delay      | `number`               | `timeout` delay (`ms`) after which the `callback` function will be executed.                                                                       |
+| autoInvoke | `boolean`              | (Optional) Determines whether the `timeout` should start when the component mounts. `false` by default.                                            |
+| depsList   | `React.DependencyList` | (Optional) List of dependencies used in the `callback` function. Pass state values that the `callback` function might depend on. Empty by default. |
+
+**Return Value**
+
+Returns an array with the following elements:
+
+| Name  | Type     | Description             |
+| ----- | -------- | ----------------------- |
+| `[0]` | Function | Start timeout function. |
+| `[1]` | Function | Clear timeout function. |
 
 ## 💎 Contributions
 
