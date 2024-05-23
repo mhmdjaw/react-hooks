@@ -16,7 +16,7 @@ interface CallbackParams {
 export const useAnimationFrame = (
   callback: (callbackParams: CallbackParams) => void,
   autoInvoke: boolean = false,
-  depsList?: React.DependencyList
+  depsList: React.DependencyList = []
 ) => {
   const requestAnimationFrameRef = useRef<number | null>(null)
 
@@ -43,7 +43,7 @@ export const useAnimationFrame = (
       })
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    depsList || []
+    depsList
   )
 
   const cancel = useCallback(() => {

@@ -11,7 +11,7 @@ type ObserverHandler = (contectRect: Omit<DOMRectReadOnly, 'toJSON'>) => void
  */
 export const useResizeObserver = <T extends HTMLElement>(
   handler: ObserverHandler,
-  depsList?: React.DependencyList,
+  depsList: React.DependencyList = [],
   options?: ResizeObserverOptions
 ) => {
   const frameID = useRef(0)
@@ -35,7 +35,7 @@ export const useResizeObserver = <T extends HTMLElement>(
           })
         : null,
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    depsList || []
+    depsList
   )
 
   useEffect(() => {
