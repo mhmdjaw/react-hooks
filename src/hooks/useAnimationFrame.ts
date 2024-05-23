@@ -10,7 +10,7 @@ interface CallbackParams {
  * Manages `requestAnimationFrame` and handles starting and cancelling it.
  * @param callback Function that will be called when the next frame is available. `timestamp` of `requestAnimationFrame` and `complete` function are passed as parameters.
  * @param {boolean} autoInvoke (Optional) Determines whether the `requestAnimationFrame` should start when the component mounts. `false` by default.
- * @param {React.DependencyList} depsList (Optional) List of dependencies used in the `callback` function. Pass state values that the `callback` function might depend on.
+ * @param {React.DependencyList} depsList (Optional) List of dependencies used in the `callback` function. Pass state values that the `callback` function might depend on. Empty by default.
  * @returns start and cancel functions and a function to check the status of the `requestAnimationFrame`.
  */
 export const useAnimationFrame = (
