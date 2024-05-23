@@ -33,7 +33,7 @@ npm i @mhmdjawhar/react-hooks
 - [useWindowScroll](#useWindowScroll)
 - [useSystemColorScheme](#useSystemColorScheme)
 - [useWindowEvent](#useWindowEvent)
-- useResetChild
+- [useResetChild](#useResetChild)
 - useTimeout
 - useInterval
 - useAnimationFrame
@@ -470,6 +470,62 @@ export const WindowEventExample: React.FC = () => {
 | type     | `keyof WindowEventMap`               | Type of `event`.            |
 | listener | Function                             | `event` listener.           |
 | options  | `boolean \| AddEventListenerOptions` | (Optional) `event` options. |
+
+## useResetChild
+
+Resets the state of a child component along with all its children. Note that it does not reset the state of the current component.
+
+**Examples**
+
+```tsx
+import { useResetChild } from '@mhmdjawhar/react-hooks'
+import { useState } from 'react'
+
+export const Demo = () => {
+  const [resetKey, reset] = useResetChild()
+
+  return (
+    <>
+      <ChildComponent key={resetKey} />
+      <button onClick={reset}>reset child component</button>
+    </>
+  )
+}
+
+const ChildComponent = () => {
+  const [count, setCount] = useState(0)
+
+  return (
+    <div>
+      <p>Child Component</p>
+      <button onClick={() => setCount((c) => c + 1)}>count: {count}</button>
+      <SubChildComponent />
+    </div>
+  )
+}
+
+const SubChildComponent = () => {
+  const [count, setCount] = useState(0)
+
+  return (
+    <div>
+      <p>Subchild Component</p>
+      <button onClick={() => setCount((c) => c + 1)}>count: {count}</button>
+    </div>
+  )
+}
+```
+
+**Return Value**
+
+Returns an array with the following elements:
+
+| Name  | Type     | Description                                             |
+| ----- | -------- | ------------------------------------------------------- |
+| `[0]` | `string` | Reset value that must be passed to the component `key`. |
+| `[1]` | Function | A reset function to trigger the reset.                  |
+
+##
 
 ## 💎 Contributions
 
