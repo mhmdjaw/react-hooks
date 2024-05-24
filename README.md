@@ -375,6 +375,8 @@ export const WindowScrollExample: React.FC = () => {
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-window-scroll-example?file=src%2FDemo.tsx)
 
+You can also pass an optional `boolean` parameter to either activate or cancel subscription. Set to `false` to stop getting updates.
+
 ```tsx
 import { useWindowScroll } from '@mhmdjawhar/react-hooks'
 import { useState } from 'react'
@@ -683,6 +685,8 @@ export const RequestAnimationFrameExample: React.FC = () => {
   )
 }
 ```
+
+Just like `useTimeout` and `useInterval`, `useAnimationFrame` also returns a cancel function that you can use to stop the animation from running.
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-animation-frame-example?file=src%2FDemo.tsx)
 
