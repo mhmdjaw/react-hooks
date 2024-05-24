@@ -35,7 +35,7 @@ npm i @mhmdjawhar/react-hooks
 - [useWindowEvent](#useWindowEvent)
 - [useResetChild](#useResetChild)
 - [useTimeout](#useTimeout)
-- useInterval
+- [useInterval](#useInterval)
 - useAnimationFrame
 
 ## 🔎 Usage
@@ -566,10 +566,66 @@ export const TimeoutExample: React.FC = () => {
 
 Returns an array with the following elements:
 
-| Name  | Type     | Description             |
-| ----- | -------- | ----------------------- |
-| `[0]` | Function | Start timeout function. |
-| `[1]` | Function | Clear timeout function. |
+| Name  | Type     | Description               |
+| ----- | -------- | ------------------------- |
+| `[0]` | Function | Start `timeout` function. |
+| `[1]` | Function | Clear `timeout` function. |
+
+## useInterval
+
+Manages `interval` and handles starting and clearing it.
+
+**Examples**
+
+```tsx
+import { useInterval } from '@mhmdjawhar/react-hooks'
+import { useState } from 'react'
+
+export const IntervalExample: React.FC = () => {
+  const [count, setCount] = useState(0)
+  const [start, clear, isActive] = useInterval(() => setCount((c) => c + 1), 1000)
+  const [status, setStatus] = useState('')
+
+  const checkIntervalStatus = () => {
+    if (isActive()) {
+      setStatus('running')
+    } else {
+      setStatus('idle')
+    }
+  }
+
+  return (
+    <>
+      <button onClick={start}>Start</button>
+      <button onClick={clear}>Clear</button>
+      <p>count: {count}</p>
+      <button onClick={checkIntervalStatus}>check interval status</button>
+      <p>Interval state: {status}</p>
+    </>
+  )
+}
+```
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-interval-example?file=src%2FDemo.tsx)
+
+**Parameters**
+
+| Name       | Type                   | Description                                                                                                                                        |
+| ---------- | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| callback   | Function               | A function that will be called every delay.                                                                                                        |
+| delay      | `number`               | `interval` delay (`ms`) in between `callback` executions.                                                                                          |
+| autoInvoke | `boolean`              | (Optional) Determines whether the `interval` should start when the component mounts. `false` by default.                                           |
+| depsList   | `React.DependencyList` | (Optional) List of dependencies used in the `callback` function. Pass state values that the `callback` function might depend on. Empty by default. |
+
+**Return Value**
+
+Returns an array with the following elements:
+
+| Name  | Type     | Description                                       |
+| ----- | -------- | ------------------------------------------------- |
+| `[0]` | Function | Start `interval` function.                        |
+| `[1]` | Function | Clear `interval` function.                        |
+| `[2]` | Function | A function to check the status of the `interval`. |
 
 ## 💎 Contributions
 
