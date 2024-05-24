@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef } from 'react'
 interface CallbackParams {
   timestamp: number
   startTime: number
-  complete: () => void
+  complete: (onComplete?: () => void) => void
 }
 
 /**
@@ -24,16 +24,27 @@ export const useAnimationFrame = (
     () => {
       cancel()
       let startTime: number
+      let onCompleteCallback: () => void
 
       const runAnimation = (timestamp: number) => {
         let complete = false
-        callback({ timestamp, startTime, complete: () => (complete = true) })
+        callback({
+          timestamp,
+          startTime,
+          complete: (onComplete) => {
+            complete = true
+            if (onComplete) {
+              onCompleteCallback = onComplete
+            }
+          }
+        })
         if (!complete) {
           requestAnimationFrameRef.current = window.requestAnimationFrame((timestamp) => {
             runAnimation(timestamp)
           })
         } else {
           requestAnimationFrameRef.current = null
+          onCompleteCallback()
         }
       }
 
