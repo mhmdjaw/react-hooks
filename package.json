@@ -1,6 +1,6 @@
 {
   "name": "@mhmdjawhar/react-hooks",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "A collection of hooks for better state management",
   "repository": {
     "type": "git",
