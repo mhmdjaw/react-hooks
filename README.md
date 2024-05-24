@@ -652,7 +652,7 @@ export const RequestAnimationFrameExample: React.FC = () => {
       boxRef.current.style.left = (distance * progress).toFixed(2) + 'px'
     }
 
-    // if duration is met stop animation
+    // if duration is met stop animation by calling complete()
     if (runTime >= duration) {
       complete(() => checkAnimationStatus())
     }
@@ -698,6 +698,7 @@ export const RequestAnimationFrameCancelExample: React.FC = () => {
   // Animation that moves the div 400px to the right over 2 seconds
   const [startMoveRight, cancelMoveRight] = useAnimationFrame(({ complete }) => {
     if (boxRef.current) {
+      // run animation as long as distance is not met, otherwise call complete()
       if (rightRef.current < 400) {
         ++rightRef.current
         boxRef.current.style.left = rightRef.current + 'px'
@@ -713,6 +714,7 @@ export const RequestAnimationFrameCancelExample: React.FC = () => {
   // Animation that moves the div 400px to the left over 2 seconds
   const [startMoveLeft, cancelMoveLeft] = useAnimationFrame(({ complete }) => {
     if (boxRef.current) {
+      // run animation as long as distance is not met, otherwise call complete()
       if (leftRef.current > 0) {
         --leftRef.current
         boxRef.current.style.left = leftRef.current + 'px'
