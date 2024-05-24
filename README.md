@@ -79,8 +79,8 @@ Returns an array with the following elements:
 | ------------ | --------- | -------------------------------------------- |
 | `[0]`        | `boolean` | The current state of the disclosure.         |
 | `[1].open`   | Function  | A function that sets the state to `true`.    |
-| `[2].close`  | Function  | A function that sets the state to `false`.   |
-| `[3].toggle` | Function  | A function that toggles the `boolean` state. |
+| `[1].close`  | Function  | A function that sets the state to `false`.   |
+| `[1].toggle` | Function  | A function that toggles the `boolean` state. |
 
 ### useClickOutside
 
