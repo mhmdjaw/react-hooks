@@ -36,7 +36,7 @@ npm i @mhmdjawhar/react-hooks
 - [useResetChild](#useResetChild)
 - [useTimeout](#useTimeout)
 - [useInterval](#useInterval)
-- useAnimationFrame
+- [useAnimationFrame](#useAnimationFrame)
 
 ## 🔎 Usage
 
@@ -626,6 +626,147 @@ Returns an array with the following elements:
 | `[0]` | Function | Start `interval` function.                        |
 | `[1]` | Function | Clear `interval` function.                        |
 | `[2]` | Function | A function to check the status of the `interval`. |
+
+## useAnimationFrame
+
+Manages `requestAnimationFrame` and handles starting and cancelling it.
+
+**Examples**
+
+```tsx
+import { useAnimationFrame } from '@mhmdjawhar/react-hooks'
+import { useRef, useState } from 'react'
+
+export const RequestAnimationFrameExample: React.FC = () => {
+  const boxRef = useRef<HTMLDivElement>(null)
+
+  // Animation that moves a div 400px over 2 seconds
+  const [start, , isActive] = useAnimationFrame(({ timestamp, startTime, complete }) => {
+    const runTime = timestamp - startTime
+    const duration = 2000
+    const distance = 400
+    let progress = runTime / duration
+    progress = Math.min(progress, 1)
+
+    if (boxRef.current) {
+      boxRef.current.style.left = (distance * progress).toFixed(2) + 'px'
+    }
+
+    // if duration is met stop animation
+    if (runTime >= duration) {
+      complete(() => checkAnimationStatus())
+    }
+  })
+
+  const [status, setStatus] = useState('idle')
+
+  const checkAnimationStatus = () => {
+    if (isActive()) {
+      setStatus('running')
+    } else {
+      setStatus('idle')
+    }
+  }
+
+  const startAnimation = () => {
+    start()
+    checkAnimationStatus()
+  }
+
+  return (
+    <>
+      <button onClick={startAnimation}>Start</button>
+      <div ref={boxRef} style={{ width: '100px', height: '100px', background: 'purple', position: 'relative' }} />
+      <button onClick={checkAnimationStatus}>check animation status</button>
+      <p>Animation state: {status}</p>
+    </>
+  )
+}
+```
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-animation-frame-example?file=src%2FDemo.tsx)
+
+```tsx
+import { useAnimationFrame } from '@mhmdjawhar/react-hooks'
+import { useRef } from 'react'
+
+export const RequestAnimationFrameCancelExample: React.FC = () => {
+  const boxRef = useRef<HTMLDivElement>(null)
+  const rightRef = useRef<number>(0)
+  const leftRef = useRef<number>(400)
+
+  // Animation that moves the div 400px to the right over 2 seconds
+  const [startMoveRight, cancelMoveRight] = useAnimationFrame(({ complete }) => {
+    if (boxRef.current) {
+      if (rightRef.current < 400) {
+        ++rightRef.current
+        boxRef.current.style.left = rightRef.current + 'px'
+      } else {
+        complete(() => {
+          rightRef.current = 0
+          startMoveLeft()
+        })
+      }
+    }
+  })
+
+  // Animation that moves the div 400px to the left over 2 seconds
+  const [startMoveLeft, cancelMoveLeft] = useAnimationFrame(({ complete }) => {
+    if (boxRef.current) {
+      if (leftRef.current > 0) {
+        --leftRef.current
+        boxRef.current.style.left = leftRef.current + 'px'
+      } else {
+        complete(() => {
+          leftRef.current = 400
+          startMoveRight()
+        })
+      }
+    }
+  })
+
+  const cancel = () => {
+    cancelMoveLeft()
+    cancelMoveRight()
+  }
+
+  const start = () => {
+    if (rightRef.current >= 0 && leftRef.current === 400) {
+      startMoveRight()
+    } else {
+      startMoveLeft()
+    }
+  }
+
+  return (
+    <>
+      <button onClick={start}>Start</button>
+      <button onClick={cancel}>cancel</button>
+      <div ref={boxRef} style={{ width: '100px', height: '100px', background: 'purple', position: 'relative' }} />
+    </>
+  )
+}
+```
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-animation-frame-example-2?file=src%2FDemo.tsx)
+
+**Parameters**
+
+| Name       | Type                   | Description                                                                                                                                             |
+| ---------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| callback   | Function               | Function that will be called when the next frame is available. `timestamp` of `requestAnimationFrame` and `complete` function are passed as parameters. |
+| autoInvoke | `boolean`              | (Optional) Determines whether the `requestAnimationFrame` should start when the component mounts. `false` by default.                                   |
+| depsList   | `React.DependencyList` | (Optional) List of dependencies used in the `callback` function. Pass state values that the `callback` function might depend on. Empty by default.      |
+
+**Return Value**
+
+Returns an array with the following elements:
+
+| Name  | Type     | Description                                      |
+| ----- | -------- | ------------------------------------------------ |
+| `[0]` | Function | Start animation.                                 |
+| `[1]` | Function | Cancel animation.                                |
+| `[2]` | Function | A function to check the status of the animation. |
 
 ## 💎 Contributions
 
