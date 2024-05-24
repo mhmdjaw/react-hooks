@@ -4,7 +4,7 @@ A collection of hooks for better state management.
 
 Advantages of using this library:
 
-- Super tiny bundle size (supports tree shaking).
+- Negligible bundle size (supports tree shaking, ≈400B per hook import 🤏).
 - Very detailed documentation along with previews and live demos.
 - Highly performant (no unnecessary rerenders at all).
 - Well tested.
