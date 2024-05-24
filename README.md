@@ -248,7 +248,7 @@ Returns an object with the following properties:
 | width  | `number` | The viewport width.  |
 | height | `number` | The viewport height. |
 
-## useResizeObserver
+### useResizeObserver
 
 Detects changes to the dimensions of an `Element` with `ResizeObserver`.
 
@@ -350,7 +350,7 @@ export const ResizeObserverExample: React.FC = () => {
 | ---- | ----------- | ----------------------------------------------------------- |
 | ref  | `RefObject` | Must be passed to the element whose size is being observed. |
 
-## useWindowScroll
+### useWindowScroll
 
 Returns current `window` scroll position and a function to scroll to a given position.
 
@@ -414,7 +414,7 @@ Returns an array with the following elements:
 | `[0].y` | `number` | Scroll position Y.                                 |
 | `[1]`   | Function | A function to scroll smoothly to a given position. |
 
-## useSystemColorScheme
+### useSystemColorScheme
 
 Returns current `system` color scheme. Updates on change.
 
@@ -438,7 +438,7 @@ export const SystemColorSchemeExample: React.FC = () => {
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-system-color-scheme-example?file=src%2FDemo.tsx)
 
-## useWindowEvent
+### useWindowEvent
 
 Adds an `event` listener to `window` object when the component mounts and removes it when it unmounts.
 
@@ -471,7 +471,7 @@ export const WindowEventExample: React.FC = () => {
 | listener | Function                             | `event` listener.           |
 | options  | `boolean \| AddEventListenerOptions` | (Optional) `event` options. |
 
-## useResetChild
+### useResetChild
 
 Resets the state of a child component along with all its children. Note that it does not reset the state of the current component.
 
@@ -527,7 +527,7 @@ Returns an array with the following elements:
 | `[0]` | `string` | Reset value that must be passed to the component `key`. |
 | `[1]` | Function | A reset function to trigger the reset.                  |
 
-## useTimeout
+### useTimeout
 
 Manages `timeout` and handles starting and clearing it.
 
@@ -571,7 +571,7 @@ Returns an array with the following elements:
 | `[0]` | Function | Start `timeout` function. |
 | `[1]` | Function | Clear `timeout` function. |
 
-## useInterval
+### useInterval
 
 Manages `interval` and handles starting and clearing it.
 
@@ -627,7 +627,7 @@ Returns an array with the following elements:
 | `[1]` | Function | Clear `interval` function.                        |
 | `[2]` | Function | A function to check the status of the `interval`. |
 
-## useAnimationFrame
+### useAnimationFrame
 
 Manages `requestAnimationFrame` and handles starting and cancelling it.
 
