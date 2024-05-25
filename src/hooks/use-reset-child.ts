@@ -7,12 +7,12 @@ import { useCallback, useState } from 'react'
  *
  * @returns Reset value that must be passed to the component `key` and a reset function to trigger the reset.
  */
-export const useResetChild = () => {
+export const useResetChild = (prefixKey: string = 'reset_key') => {
   const [timestamp, setTimestamp] = useState(Date.now())
 
   const reset = useCallback(() => {
     setTimestamp(Date.now())
   }, [])
 
-  return [timestamp.toString(), reset] as const
+  return [`${prefixKey}_${timestamp.toString()}`, reset] as const
 }
