@@ -7,7 +7,6 @@ Advantages of using this library:
 - Negligible bundle size (supports tree shaking, ≈400B per hook import 🤏).
 - Very detailed documentation along with previews and live demos.
 - Highly performant (no unnecessary rerenders at all).
-- Well tested.
 - Super flexible (providing options whenever possible).
 
 ## 📕 Table of Content
