@@ -4,10 +4,11 @@ A collection of hooks for better state management.
 
 Advantages of using this library:
 
-- Negligible bundle size (supports tree shaking, ≈400B per hook import 🤏).
-- Very detailed documentation along with previews and live demos.
-- Highly performant (no unnecessary rerenders at all).
-- Super flexible (providing options whenever possible).
+- **Negligible bundle size** (supports tree shaking, ≈400B per hook import 🤏).
+- **Very detailed documentation** along with previews and live demos.
+- **Highly performant** (no unnecessary rerenders at all).
+- **Super flexible** (providing options whenever possible).
+- **Easily extendable**: Since it's tree-shakable, any new useful hooks can be added in the future without having to worry about bundle size.
 
 ## 📕 Table of Content
 
