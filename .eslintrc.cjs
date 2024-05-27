@@ -10,7 +10,7 @@ module.exports = {
     'prettier'
   ],
   parser: '@typescript-eslint/parser',
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', 'babel.config.cjs'],
   plugins: ['prettier'],
   globals: {
     process: true
