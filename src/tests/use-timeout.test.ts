@@ -4,9 +4,7 @@ import { useTimeout } from '../hooks/use-timeout'
 jest.useFakeTimers()
 
 describe('useTimeout', () => {
-  beforeEach(() => {
-    jest.clearAllTimers()
-  })
+  beforeEach(jest.clearAllTimers)
 
   it('should call the callback after the delay', () => {
     const callback = jest.fn()
@@ -14,15 +12,11 @@ describe('useTimeout', () => {
 
     const [start] = result.current
 
-    act(() => {
-      start()
-    })
+    act(start)
 
     expect(callback).not.toHaveBeenCalled()
 
-    act(() => {
-      jest.advanceTimersByTime(1000)
-    })
+    act(() => jest.advanceTimersByTime(1000))
 
     expect(callback).toHaveBeenCalled()
   })
@@ -33,19 +27,36 @@ describe('useTimeout', () => {
 
     const [start, clear] = result.current
 
-    act(() => {
-      start()
-    })
+    act(start)
 
-    act(() => {
-      clear()
-    })
+    act(clear)
 
-    act(() => {
-      jest.advanceTimersByTime(1000)
-    })
+    act(() => jest.advanceTimersByTime(1000))
 
     expect(callback).not.toHaveBeenCalled()
+  })
+
+  it('should clear the timeout and start another one when start is called again', () => {
+    const callback = jest.fn()
+    const { result } = renderHook(() => useTimeout(callback, 1000))
+
+    const [start] = result.current
+
+    act(start)
+
+    act(() => jest.advanceTimersByTime(500))
+
+    expect(callback).not.toHaveBeenCalled()
+
+    act(start)
+
+    act(() => jest.advanceTimersByTime(600))
+
+    expect(callback).not.toHaveBeenCalled()
+
+    act(() => jest.advanceTimersByTime(400))
+
+    expect(callback).toHaveBeenCalled()
   })
 
   it('should auto-invoke the timeout on mount if autoInvoke is true', () => {
@@ -54,9 +65,7 @@ describe('useTimeout', () => {
 
     expect(callback).not.toHaveBeenCalled()
 
-    act(() => {
-      jest.advanceTimersByTime(1000)
-    })
+    act(() => jest.advanceTimersByTime(1000))
 
     expect(callback).toHaveBeenCalled()
   })
@@ -70,13 +79,9 @@ describe('useTimeout', () => {
 
     const [start] = result.current
 
-    act(() => {
-      start()
-    })
+    act(start)
 
-    act(() => {
-      jest.advanceTimersByTime(500)
-    })
+    act(() => jest.advanceTimersByTime(500))
 
     expect(callback).not.toHaveBeenCalled()
 
@@ -84,19 +89,13 @@ describe('useTimeout', () => {
     rerender({ delay })
     const [newStart] = result.current
 
-    act(() => {
-      newStart()
-    })
+    act(newStart)
 
-    act(() => {
-      jest.advanceTimersByTime(1999)
-    })
+    act(() => jest.advanceTimersByTime(1999))
 
     expect(callback).not.toHaveBeenCalled()
 
-    act(() => {
-      jest.advanceTimersByTime(1)
-    })
+    act(() => jest.advanceTimersByTime(1))
 
     expect(callback).toHaveBeenCalled()
   })
@@ -108,25 +107,33 @@ describe('useTimeout', () => {
       initialProps: { delay }
     })
 
-    act(() => {
-      jest.advanceTimersByTime(500)
-    })
+    act(() => jest.advanceTimersByTime(500))
 
     expect(callback).not.toHaveBeenCalled()
 
     delay = 2000
     rerender({ delay })
 
-    act(() => {
-      jest.advanceTimersByTime(1999)
-    })
+    act(() => jest.advanceTimersByTime(1999))
 
     expect(callback).not.toHaveBeenCalled()
 
-    act(() => {
-      jest.advanceTimersByTime(1)
-    })
+    act(() => jest.advanceTimersByTime(1))
 
     expect(callback).toHaveBeenCalled()
+  })
+
+  it('should call callback with callback params', () => {
+    const callbackParams = { testParam: 'test' }
+    const callback = jest.fn()
+    const { result } = renderHook(() => useTimeout(callback, 1000, true))
+
+    const [start] = result.current
+
+    act(() => start(callbackParams))
+
+    act(() => jest.advanceTimersByTime(1000))
+
+    expect(callback).toHaveBeenCalledWith(callbackParams)
   })
 })
