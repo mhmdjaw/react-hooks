@@ -9,7 +9,8 @@ import { useCallback, useEffect, useRef } from 'react'
  * @returns start and clear functions and function to check the status of the `interval`.
  */
 export const useInterval = (
-  callback: (...callbackParams: unknown[]) => void,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  callback: (...callbackParams: any[]) => void,
   delay: number,
   autoInvoke: boolean = false,
   depsList?: React.DependencyList
@@ -22,7 +23,7 @@ export const useInterval = (
         window.clearInterval(intervalRef.current)
       }
       intervalRef.current = window.setInterval(() => {
-        callback(callbackParams)
+        callback(...callbackParams)
       }, delay)
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps

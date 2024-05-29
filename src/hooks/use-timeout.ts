@@ -9,7 +9,8 @@ import { useCallback, useEffect, useRef } from 'react'
  * @returns start and clear functions.
  */
 export const useTimeout = (
-  callback: (...callbackParams: unknown[]) => void,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  callback: (...callbackParams: any[]) => void,
   delay: number,
   autoInvoke: boolean = false,
   depsList?: React.DependencyList
@@ -22,7 +23,7 @@ export const useTimeout = (
         window.clearTimeout(timeoutRef.current)
       }
       timeoutRef.current = window.setTimeout(() => {
-        callback(callbackParams)
+        callback(...callbackParams)
         timeoutRef.current = null
       }, delay)
     },
