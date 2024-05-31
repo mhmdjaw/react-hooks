@@ -126,7 +126,7 @@ describe('useTimeout', () => {
   it('should call callback with callback params', () => {
     const callbackParams = { testParam: 'test' }
     const callback = jest.fn()
-    const { result } = renderHook(() => useTimeout(callback, 1000, true))
+    const { result } = renderHook(() => useTimeout(callback, 1000))
 
     const [start] = result.current
 
