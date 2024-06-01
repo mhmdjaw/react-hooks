@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react'
 
-interface CallbackParams {
+export interface CallbackParams {
   timestamp: number
   startTime: number
   complete: (onComplete?: () => void) => void
