@@ -520,6 +520,12 @@ const SubChildComponent = () => {
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-reset-child-example?file=src%2FDemo.tsx)
 
+**Parameters**
+
+| Name      | Type     | Description                                                                                                                                        |
+| --------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| prefixKey | `string` | (Optional) In case multiple instances of this hook are being used to reset sibling components. Pass a unique prefix value to avoid key collisions. |
+
 **Return Value**
 
 Returns an array with the following elements:
