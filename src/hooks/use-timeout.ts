@@ -8,9 +8,8 @@ import { useCallback, useEffect, useRef } from 'react'
  * @param {React.DependencyList} depsList (Optional) List of dependencies used in the `callback` function. Pass state values that the `callback` function might depend on. Empty by default.
  * @returns start and clear functions.
  */
-export const useTimeout = (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  callback: (...callbackParams: any[]) => void,
+export const useTimeout = <T extends Function>(
+  callback: T,
   delay: number,
   autoInvoke: boolean = false,
   depsList?: React.DependencyList
@@ -46,5 +45,5 @@ export const useTimeout = (
     return clear
   }, [clear, start, autoInvoke])
 
-  return [start, clear] as const
+  return [start as unknown as T, clear] as const
 }

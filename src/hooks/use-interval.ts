@@ -8,9 +8,8 @@ import { useCallback, useEffect, useRef } from 'react'
  * @param {React.DependencyList} depsList (Optional) List of dependencies used in the `callback` function. Pass state values that the `callback` function might depend on. Empty by default.
  * @returns start and clear functions and function to check the status of the `interval`.
  */
-export const useInterval = (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  callback: (...callbackParams: any[]) => void,
+export const useInterval = <T extends Function>(
+  callback: T,
   delay: number,
   autoInvoke: boolean = false,
   depsList?: React.DependencyList
@@ -53,5 +52,5 @@ export const useInterval = (
     return clear
   }, [clear, start, autoInvoke])
 
-  return [start, clear, isActive] as const
+  return [start as unknown as T, clear, isActive] as const
 }
