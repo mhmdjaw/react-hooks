@@ -36,6 +36,7 @@ npm i @mhmdjawhar/react-hooks
 - [useResetChild](#useResetChild)
 - [useTimeout](#useTimeout)
 - [useInterval](#useInterval)
+- [useDebounce](#useDebounce)
 - [useAnimationFrame](#useAnimationFrame)
 
 ## 🔎 Usage
@@ -779,6 +780,57 @@ Returns an array with the following elements:
 | `[0]` | Function | Start animation.                                 |
 | `[1]` | Function | Cancel animation.                                |
 | `[2]` | Function | A function to check the status of the animation. |
+
+### useDebounce
+
+Debounces a `callback` delaying its execution time since the last call.
+
+**Examples**
+
+```tsx
+import { useDebounce } from '@mhmdjawhar/react-hooks'
+import { useState } from 'react'
+
+export const DebounceExample: React.FC = () => {
+  const [text, setText] = useState('')
+
+  const handleTextChange = useDebounce(
+    (value: string) => {
+      setText(value)
+    },
+    500,
+    [text]
+  )
+
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value
+    handleTextChange(value)
+  }
+
+  return (
+    <>
+      <input onChange={onChange} />
+      <p>debounced text: {text}</p>
+    </>
+  )
+}
+```
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-debounce-example?file=src%2FDemo.tsx)
+
+**Parameters**
+
+| Name     | Type             | Description                                                                                                                                        |
+| -------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| callback | Function         | Function to be debounced.                                                                                                                          |
+| delay    | number           | Debounce delay (`ms`) after which the `callback` function will be executed.                                                                        |
+| depsList | `DependencyList` | (Optional) List of dependencies used in the `callback` function. Pass state values that the `callback` function might depend on. Empty by default. |
+
+**Return Value**
+
+| Name     | Type     | Description                             |
+| -------- | -------- | --------------------------------------- |
+| debounce | Function | A function that debounces the callback. |
 
 ## 💎 Contributions
 
