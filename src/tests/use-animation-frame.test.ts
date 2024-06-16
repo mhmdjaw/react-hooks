@@ -9,7 +9,9 @@ import { jest } from '@jest/globals'
 jest.useFakeTimers()
 
 describe('useAnimationFrame', () => {
-  beforeEach(jest.clearAllTimers)
+  beforeEach(() => {
+    jest.clearAllTimers()
+  })
 
   it('should call callback repeatedly whenever a frame is available', () => {
     const callback = jest.fn()

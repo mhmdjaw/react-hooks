@@ -5,7 +5,9 @@ import { act } from 'react'
 jest.useFakeTimers()
 
 describe('useInterval', () => {
-  beforeEach(jest.clearAllTimers)
+  beforeEach(() => {
+    jest.clearAllTimers()
+  })
 
   it('should call the callback on every delay upon starting interval', () => {
     const callback = jest.fn()

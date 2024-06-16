@@ -4,7 +4,9 @@ import { useTimeout } from '../hooks/use-timeout'
 jest.useFakeTimers()
 
 describe('useTimeout', () => {
-  beforeEach(jest.clearAllTimers)
+  beforeEach(() => {
+    jest.clearAllTimers()
+  })
 
   it('should call the callback after the delay', () => {
     const callback = jest.fn()

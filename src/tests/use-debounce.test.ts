@@ -4,7 +4,9 @@ import { useDebounce } from '../hooks/use-debounce'
 jest.useFakeTimers()
 
 describe('useDebounce', () => {
-  beforeEach(jest.clearAllTimers)
+  beforeEach(() => {
+    jest.clearAllTimers()
+  })
 
   it('should call the callback after the delay', () => {
     const callback = jest.fn()

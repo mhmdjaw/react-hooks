@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useState } from 'react'
+import { useCallback, useLayoutEffect } from 'react'
 
 /**
  * Used to manage local storage items.
