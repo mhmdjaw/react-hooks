@@ -20,7 +20,7 @@ export const useLocalStorage = <T>(key: string, initialValue?: T, raw: boolean =
   const getValue = useCallback(() => {
     const localStorageValue = localStorage.getItem(key)
     if (localStorageValue !== null) {
-      return deserialize(localStorageValue)
+      return deserialize(localStorageValue) as T
     } else {
       return localStorageValue
     }
