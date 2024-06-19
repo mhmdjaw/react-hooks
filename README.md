@@ -34,6 +34,7 @@ npm i @mhmdjawhar/react-hooks
 - [useSystemColorScheme](#useSystemColorScheme)
 - [useWindowEvent](#useWindowEvent)
 - [useResetChild](#useResetChild)
+- [useLocalStorage](#useLocalStorage)
 - [useTimeout](#useTimeout)
 - [useInterval](#useInterval)
 - [useDebounce](#useDebounce)
@@ -831,6 +832,64 @@ export const DebounceExample: React.FC = () => {
 | Name     | Type     | Description                             |
 | -------- | -------- | --------------------------------------- |
 | debounce | Function | A function that debounces the callback. |
+
+### useLocalStorage
+
+Used to manage local storage items.
+
+**Examples**
+
+```tsx
+import { useLocalStorage } from '@mhmdjawhar/react-hooks'
+import { useState } from 'react'
+
+const initialValue = { firstTime: true, progress: 0 }
+
+export const LocalStorageExample: React.FC = () => {
+  const [getTutorial, setTutorial, resetTutorial] = useLocalStorage('tutorial', initialValue)
+
+  const [state, setState] = useState(getTutorial() || initialValue)
+
+  const handleProgressClick = () => {
+    const tutorial = getTutorial()
+    setTutorial({ firstTime: false, progress: tutorial ? tutorial.progress + 1 : 1 })
+    setState(getTutorial())
+  }
+
+  const handleResetClick = () => {
+    resetTutorial()
+    setState(getTutorial())
+  }
+
+  return (
+    <>
+      <button onClick={handleProgressClick}>progress: {state?.progress || 0}</button>
+      <button onClick={handleResetClick}>reset tutorial</button>
+      <p>local Storage value: {JSON.stringify(state)}</p>
+    </>
+  )
+}
+```
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-local-storage-example?file=src%2FDemo.tsx)
+
+**Parameters**
+
+| Name         | Type      | Description                                                                                                                    |
+| ------------ | --------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| key          | `string`  | Key of the local storage item.                                                                                                 |
+| initialValue | any       | (Optional) Initial value of the item if it doesn't exist yet. If `raw` is set to `true` make sure initial value is a `string`. |
+| raw          | `boolean` | (Optional) If set to `true` the stored value will not be JSON serialized. Defaults to `false`.                                 |
+
+**Return Value**
+
+Returns an array with the following elements:
+
+| Name  | Type     | Description                               |
+| ----- | -------- | ----------------------------------------- |
+| `[0]` | Function | A function that returns the stored value. |
+| `[1]` | Function | A function to update the item.            |
+| `[2]` | Function | A function to remove the item.            |
 
 ## 💎 Contributions
 

@@ -3,7 +3,7 @@ import { useCallback, useLayoutEffect } from 'react'
 /**
  * Used to manage local storage items.
  * @param {string} key Key of the local storage item.
- * @param initialValue (Optional) Initial value of the item if it doesn't exist yet.
+ * @param initialValue (Optional) Initial value of the item if it doesn't exist yet. If `raw` is set to `true` make sure initial value is a `string`.
  * @param {boolean} raw (Optional) If set to `true` the stored value will not be JSON serialized. Defaults to `false`.
  * @returns Functions to get, set, and delete value.
  */
