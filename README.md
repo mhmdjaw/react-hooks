@@ -39,6 +39,7 @@ npm i @mhmdjawhar/react-hooks
 - [useInterval](#useInterval)
 - [useDebounce](#useDebounce)
 - [useAnimationFrame](#useAnimationFrame)
+- [useMediaQuery](#useMediaQuery)
 
 ## 🔎 Usage
 
@@ -890,6 +891,37 @@ Returns an array with the following elements:
 | `[0]` | Function | A function that returns the stored value. |
 | `[1]` | Function | A function to update the item.            |
 | `[2]` | Function | A function to remove the item.            |
+
+### useMediaQuery
+
+Listens and checks media query matches.
+
+**Examples**
+
+```tsx
+import { useMediaQuery } from '@mhmdjawhar/react-hooks'
+
+export const MediaQueryExample: React.FC = () => {
+  const matches = useMediaQuery('(max-width: 30em)')
+
+  return <p>breakpoint matches? {matches ? 'true' : 'false'}</p>
+}
+```
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-media-query-example?file=src%2FDemo.tsx)
+
+**Parameters**
+
+| Name         | Type      | Description                                                             |
+| ------------ | --------- | ----------------------------------------------------------------------- |
+| query        | `string`  | Media query string.                                                     |
+| initialValue | `boolean` | (Optional) Initial value of the match query state. Defaults to `false`. |
+
+**Return Value**
+
+| Name    | Type      | Description                                                    |
+| ------- | --------- | -------------------------------------------------------------- |
+| matches | `boolean` | `true` if the media query is matched, and `false` if it's not. |
 
 ## 💎 Contributions
 
