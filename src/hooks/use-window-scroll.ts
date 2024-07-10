@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useWindowEvent } from './use-window-event'
+import { isBrowser } from '../helpers'
 
 interface ScrollPosition {
   x: number
@@ -7,13 +8,13 @@ interface ScrollPosition {
 }
 
 const getScrollPosition = () => {
-  return typeof window !== 'undefined'
+  return isBrowser
     ? { x: window.scrollX || window.pageXOffset, y: window.scrollY || window.pageYOffset }
     : { x: 0, y: 0 }
 }
 
 const scrollTo = ({ x, y }: Partial<ScrollPosition>) => {
-  if (typeof window !== 'undefined') {
+  if (isBrowser) {
     const scrollOptions: ScrollToOptions = { behavior: 'smooth' }
 
     if (typeof x === 'number') {

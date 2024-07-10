@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef } from 'react'
+import { isBrowser } from '../helpers'
 
 type ObserverHandler = (contectRect: Omit<DOMRectReadOnly, 'toJSON'>) => void
 
@@ -19,7 +20,7 @@ export const useResizeObserver = <T extends HTMLElement>(
 
   const observer = useMemo(
     () =>
-      typeof window !== 'undefined'
+      isBrowser
         ? new ResizeObserver((entries) => {
             const entry = entries[0]
 
