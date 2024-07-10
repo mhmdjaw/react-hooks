@@ -1,4 +1,5 @@
-import { useCallback, useLayoutEffect } from 'react'
+import { useCallback } from 'react'
+import { useIsomorphicLayoutEffect } from './use-isomorphic-layout-effect'
 
 /**
  * Used to manage local storage items.
@@ -11,7 +12,7 @@ export const useLocalStorage = <T>(key: string, initialValue?: T, raw: boolean =
   const serialize = raw ? (value: string) => value : JSON.stringify
   const deserialize = raw ? (value: string) => value : JSON.parse
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (localStorage.getItem(key) === null && initialValue) {
       localStorage.setItem(key, serialize(initialValue))
     }
