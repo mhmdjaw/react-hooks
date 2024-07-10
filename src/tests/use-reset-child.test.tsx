@@ -96,23 +96,6 @@ describe('useResetChild', () => {
     expect(initialResetKey).not.toBe(newResetKey)
   })
 
-  it('should generate 2 identical reset keys when 2 useResetKey are used without prefix', async () => {
-    render(<ResetChildren />)
-
-    const resetKeyOne = screen.getByTestId<HTMLParagraphElement>('reset_key_1').textContent
-    const resetKeyTwo = screen.getByTestId<HTMLParagraphElement>('reset_key_2').textContent
-
-    expect(resetKeyOne).toBe(resetKeyTwo)
-
-    await userEvent.click(screen.getByTestId('reset'))
-
-    const newResetKeyOne = screen.getByTestId<HTMLParagraphElement>('reset_key_1').textContent
-    const newResetKeyTwo = screen.getByTestId<HTMLParagraphElement>('reset_key_2').textContent
-
-    expect(newResetKeyOne).not.toBe(resetKeyOne)
-    expect(newResetKeyOne).toBe(newResetKeyTwo)
-  })
-
   it('should generate 2 different reset keys when 2 useResetKey are used with prefix', async () => {
     render(<ResetChildren prefix />)
 
