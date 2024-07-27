@@ -212,23 +212,23 @@ export const ViewportSizeExample: React.FC = () => {
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-viewport-size-example?file=src%2FDemo.tsx)
 
-You can also pass an optional `boolean` parameter to either activate or cancel subscription. Set to `false` to stop getting updates.
+You can also pass an optional `boolean` parameter to disable or enable debouncing the resize update. It is set `true` by default to optimize and avoid too many rerenders. to Set to `false` to disable debouncing and get instant updates.
 
 ```tsx
 import { useViewportSize } from '@mhmdjawhar/react-hooks'
 import { useState } from 'react'
 
 export const ViewportSizeSubscriptionExample: React.FC = () => {
-  const [subscription, setSubscription] = useState(true)
+  const [debounce, setDebounce] = useState(true)
 
-  const { width, height } = useViewportSize(subscription)
+  const { width, height } = useViewportSize(debounce)
 
   return (
     <>
       <p>
         width: {width}, height: {height}
       </p>
-      <button onClick={() => setSubscription((sub) => !sub)}>toggle subscription</button>
+      <button onClick={() => setDebounce((prev) => !prev)}>toggle debounce</button>
     </>
   )
 }
@@ -238,9 +238,9 @@ export const ViewportSizeSubscriptionExample: React.FC = () => {
 
 **Parameters**
 
-| Name         | Type      | Description                                                                         |
-| ------------ | --------- | ----------------------------------------------------------------------------------- |
-| isSubscribed | `boolean` | (Optional) Activate or cancel subscription. Set to `false` to stop getting updates. |
+| Name     | Type      | Description                                                                                                      |
+| -------- | --------- | ---------------------------------------------------------------------------------------------------------------- |
+| debounce | `boolean` | (Optional) Debounce updating the size. Set to `false` to disable debouncing. `true` by default for optimization. |
 
 **Return Value**
 
