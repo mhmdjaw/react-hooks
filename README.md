@@ -192,7 +192,7 @@ export const OutsideEventExample: React.FC = () => {
 
 ### useViewportSize
 
-Returns current viewport's `width` and `height`. It updates on `resize` and `orientationchange`.
+Returns current viewport's `width` and `height`. It debounce updates on `resize` and `orientationchange` .
 
 **Examples**
 
@@ -212,7 +212,7 @@ export const ViewportSizeExample: React.FC = () => {
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/use-viewport-size-example?file=src%2FDemo.tsx)
 
-You can also pass an optional `boolean` parameter to disable or enable debouncing the resize update. It is set `true` by default to optimize and avoid too many rerenders. to Set to `false` to disable debouncing and get instant updates.
+You can also pass an optional `boolean` parameter to disable or enable debouncing the resize update. It is set `true` by default to optimize and avoid too many rerenders. Set to `false` to disable debouncing and get instant updates.
 
 ```tsx
 import { useViewportSize } from '@mhmdjawhar/react-hooks'
